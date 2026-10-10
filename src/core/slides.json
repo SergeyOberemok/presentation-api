@@ -4,6 +4,11 @@
     "value": "0 - Church various thank contain name toward scientist."
   },
   {
+    "type": "file:md",
+    "destination": "chat",
+    "value": "ibmcloud-mcp-session.md"
+  },
+  {
     "type": "text",
     "value": "1 - Their security course teach."
   },
@@ -18,7 +23,7 @@
   {
     "type": "file:md",
     "destination": "chat",
-    "value": "ibmcloud-mcp-session.md"
+    "value": "README.md"
   },
   {
     "type": "text",

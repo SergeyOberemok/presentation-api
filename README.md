@@ -42,7 +42,8 @@ Set `ENV=production` to disable hot-reload.
 
 | Method | Path | Description |
 |---|---|---|
-| `GET` | `/nodes/` | List nodes, paginated in chunks of 20. Use `?page=` (1-indexed) to navigate. |
+| `GET` | `/slides/` | List slides, paginated in chunks of 20. Use `?page=` (1-indexed) to navigate. |
+| `GET` | `/slide-resources/{filename}/stream` | Stream one chunk of a slide resource file as Server-Sent Events. |
 
 ## Project structure
 
@@ -50,9 +51,13 @@ Set `ENV=production` to disable hot-reload.
 src/
 └── presentation_api/
     ├── app.py          # FastAPI application entry point
-    └── nodes/
-        ├── router.py   # Route definitions
-        ├── service.py  # Business logic
-        ├── repository.py  # Data access
-        └── schemas.py  # Pydantic models
+    ├── slides/            # Slide list (paginated)
+    │   ├── router.py
+    │   ├── service.py
+    │   ├── repository.py
+    │   └── schemas.py
+    └── slide_resources/   # Chunked SSE streaming of slide_resources/ files
+        ├── router.py
+        ├── service.py
+        └── schemas.py
 ```
