@@ -1,16 +1,21 @@
 import json
-from functools import lru_cache
-from pathlib import Path
 
+from .builder import SLIDES_FILE
 from .schemas import Slide
 
-SLIDES_FILE = Path(__file__).resolve().parents[2] / "core" / "slides.json"
+_cache: tuple[float, tuple[Slide, ...]] | None = None
 
 
-@lru_cache(maxsize=1)
 def _load_slides() -> tuple[Slide, ...]:
+    global _cache
+    mtime = SLIDES_FILE.stat().st_mtime
+    if _cache is not None and _cache[0] == mtime:
+        return _cache[1]
+
     data = json.loads(SLIDES_FILE.read_text(encoding="utf-8"))
-    return tuple(Slide(**item) for item in data)
+    slides = tuple(Slide.model_validate(item) for item in data)
+    _cache = (mtime, slides)
+    return slides
 
 
 class SlideRepository:

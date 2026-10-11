@@ -14,8 +14,7 @@ This project uses `uv` for all dependency and environment management (Python >=3
 - Run the CLI entrypoint: `uv run presentation-api`
 - Run the FastAPI dev server (once an `app` object exists): `uv run fastapi dev src/presentation_api/<module>.py`
 - Add a dependency: `uv add <package>`
-
-There are no lint, type-check, or test commands configured yet (no Ruff/pytest config in `pyproject.toml`).
+- Run tests: `uv run pytest` (pytest is a dev dependency; tests live in `tests/`). No lint or type-check commands are configured yet.
 
 ## Architecture
 
